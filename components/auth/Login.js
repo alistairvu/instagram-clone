@@ -1,6 +1,7 @@
 import React, { useState } from "react"
-import { View, Button, TextInput } from "react-native"
+import { SafeAreaView, Button, TextInput } from "react-native"
 import firebase from "firebase"
+import "firebase/firestore"
 
 const Login = () => {
   const [email, setEmail] = useState("")
@@ -15,7 +16,7 @@ const Login = () => {
   }
 
   return (
-    <View>
+    <SafeAreaView>
       <TextInput
         placeholder="Email"
         onChangeText={(email) => setEmail(email)}
@@ -26,7 +27,7 @@ const Login = () => {
         onChangeText={(password) => setPassword(password)}
       />
       <Button title="Log In" onPress={() => onLogin()} />
-    </View>
+    </SafeAreaView>
   )
 }
 

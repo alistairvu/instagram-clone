@@ -1,6 +1,7 @@
 import React, { useState } from "react"
-import { View, Button, TextInput } from "react-native"
+import { SafeAreaView, Button, TextInput } from "react-native"
 import firebase from "firebase"
+import "firebase/firestore"
 
 const Register = () => {
   const [email, setEmail] = useState("")
@@ -26,7 +27,7 @@ const Register = () => {
   }
 
   return (
-    <View>
+    <SafeAreaView>
       <TextInput placeholder="Name" onChangeText={(name) => setName(name)} />
       <TextInput
         placeholder="Email"
@@ -38,7 +39,7 @@ const Register = () => {
         onChangeText={(password) => setPassword(password)}
       />
       <Button title="Sign Up" onPress={() => onSignUp()} />
-    </View>
+    </SafeAreaView>
   )
 }
 
