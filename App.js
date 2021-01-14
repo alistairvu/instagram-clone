@@ -19,9 +19,16 @@ if (firebase.apps.length === 0) {
 import { NavigationContainer } from "@react-navigation/native"
 import { createStackNavigator } from "@react-navigation/stack"
 
+import { Provider } from "react-redux"
+import { createStore, applyMiddleware } from "redux"
+import rootReducer from "./redux/reducers/index"
+import thunk from "redux-thunk"
+const store = createStore(rootReducer, applyMiddleware(thunk))
+
 import LandingScreen from "./components/auth/Landing"
 import RegisterScreen from "./components/auth/Register"
 import LoginScreen from "./components/auth/Login"
+import MainScreen from "./components/Main"
 
 const Stack = createStackNavigator()
 
@@ -66,22 +73,9 @@ const App = () => {
   }
 
   return (
-    <View style={{ flex: 1, justifyContent: "center" }}>
-      <Text>User is logged in</Text>
-      <Button
-        title="Sign out"
-        onPress={() => {
-          firebase
-            .auth()
-            .signOut()
-            .then(() => {
-              setLoaded(false)
-              setLoggedIn(false)
-            })
-            .catch((error) => console.log(error))
-        }}
-      />
-    </View>
+    <Provider store={store}>
+      <MainScreen />
+    </Provider>
   )
 }
 
