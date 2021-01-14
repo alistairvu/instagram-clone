@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar"
 import React, { useState, useEffect } from "react"
-import { View, Text, Button } from "react-native"
+import { View, Text } from "react-native"
 
 import * as firebase from "firebase"
 const firebaseConfig = {
@@ -23,14 +23,16 @@ import { Provider } from "react-redux"
 import { createStore, applyMiddleware } from "redux"
 import rootReducer from "./redux/reducers/index"
 import thunk from "redux-thunk"
-const store = createStore(rootReducer, applyMiddleware(thunk))
 
 import LandingScreen from "./components/auth/Landing"
 import RegisterScreen from "./components/auth/Register"
 import LoginScreen from "./components/auth/Login"
 import MainScreen from "./components/Main"
+import AddScreen from "./components/main/Add"
 
 const Stack = createStackNavigator()
+
+const store = createStore(rootReducer, applyMiddleware(thunk))
 
 const App = () => {
   const [loaded, setLoaded] = useState(false)
@@ -74,7 +76,16 @@ const App = () => {
 
   return (
     <Provider store={store}>
-      <MainScreen />
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Main">
+          <Stack.Screen
+            name="Main"
+            component={MainScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen name="Add" component={AddScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
     </Provider>
   )
 }
