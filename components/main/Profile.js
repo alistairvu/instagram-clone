@@ -50,9 +50,6 @@ const Profile = (props) => {
     return <View></View>
   }
 
-  console.log(user)
-  console.log(userPosts)
-
   return (
     <View style={{ ...styles.container }}>
       <View style={styles.containerInfo}>
