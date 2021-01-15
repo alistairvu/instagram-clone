@@ -1,8 +1,8 @@
 import React, { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { fetchUser } from "../redux/actions/index"
+import { fetchUser, fetchUserPosts } from "../redux/actions/index"
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs"
-import { SafeAreaView, View } from "react-native"
+import { View } from "react-native"
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons"
 
 import FeedScreen from "./main/Feed"
@@ -20,11 +20,12 @@ const Main = () => {
 
   useEffect(() => {
     dispatch(fetchUser())
+    dispatch(fetchUserPosts())
   }, [])
 
   if (currentUser) {
     return (
-      <SafeAreaView style={{ flex: 1 }}>
+      <View style={{ flex: 1 }}>
         <Tab.Navigator initialRouteName="Feed" labeled={false}>
           <Tab.Screen
             name="Feed"
@@ -68,7 +69,7 @@ const Main = () => {
             }}
           />
         </Tab.Navigator>
-      </SafeAreaView>
+      </View>
     )
   } else {
     return <View></View>

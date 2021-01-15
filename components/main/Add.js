@@ -9,6 +9,7 @@ import {
 } from "react-native"
 import { Camera } from "expo-camera"
 import * as ImagePicker from "expo-image-picker"
+import { useNavigation } from "@react-navigation/native"
 
 export default function Add() {
   const [hasGalleryPermission, setHasGalleryPermission] = useState(null)
@@ -16,6 +17,7 @@ export default function Add() {
   const [camera, setCamera] = useState(null)
   const [image, setImage] = useState(null)
   const [type, setType] = useState(Camera.Constants.Type.back)
+  const navigation = useNavigation()
 
   useEffect(() => {
     ;(async () => {
@@ -84,6 +86,10 @@ export default function Add() {
       ></Button>
       <Button title="Take a Picture" onPress={() => takePicture()} />
       <Button title="Pick From Gallery" onPress={() => pickImage()} />
+      <Button
+        title="Save"
+        onPress={() => navigation.navigate("Save", { image })}
+      />
       {image && <Image source={{ uri: image }} style={{ flex: 1 }} />}
     </SafeAreaView>
   )

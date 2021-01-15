@@ -29,6 +29,7 @@ import RegisterScreen from "./components/auth/Register"
 import LoginScreen from "./components/auth/Login"
 import MainScreen from "./components/Main"
 import AddScreen from "./components/main/Add"
+import SaveScreen from "./components/main/Save"
 
 const Stack = createStackNavigator()
 
@@ -61,9 +62,9 @@ const App = () => {
   if (!loggedIn) {
     return (
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Landing">
+        <Stack.Navigator initialRouteName="Welcome">
           <Stack.Screen
-            name="Landing"
+            name="Welcome"
             component={LandingScreen}
             options={{ headerShown: false }}
           />
@@ -84,6 +85,7 @@ const App = () => {
             options={{ headerShown: false }}
           />
           <Stack.Screen name="Add" component={AddScreen} />
+          <Stack.Screen name="Save" component={SaveScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
