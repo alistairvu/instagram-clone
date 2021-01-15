@@ -30,6 +30,7 @@ import LoginScreen from "./components/auth/Login"
 import MainScreen from "./components/Main"
 import AddScreen from "./components/main/Add"
 import SaveScreen from "./components/main/Save"
+import ProfileScreen from "./components/main/Profile"
 
 const Stack = createStackNavigator()
 
@@ -82,9 +83,10 @@ const App = () => {
           <Stack.Screen
             name="Main"
             component={MainScreen}
-            options={{ headerShown: false }}
+            // options={{ headerShown: false }}
           />
           <Stack.Screen name="Add" component={AddScreen} />
+          <Stack.Screen name="Result" component={ProfileScreen} />
           <Stack.Screen name="Save" component={SaveScreen} />
         </Stack.Navigator>
       </NavigationContainer>
