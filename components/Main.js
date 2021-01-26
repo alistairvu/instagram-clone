@@ -1,6 +1,10 @@
 import React, { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { fetchUser, fetchUserPosts } from "../redux/actions/index"
+import {
+  fetchUser,
+  fetchUserFollowing,
+  fetchUserPosts,
+} from "../redux/actions/index"
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs"
 import { View } from "react-native"
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons"
@@ -23,6 +27,7 @@ const Main = () => {
   useEffect(() => {
     dispatch(fetchUser())
     dispatch(fetchUserPosts())
+    dispatch(fetchUserFollowing())
   }, [])
 
   if (currentUser) {

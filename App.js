@@ -1,6 +1,5 @@
-import { StatusBar } from "expo-status-bar"
 import React, { useState, useEffect } from "react"
-import { View, Text } from "react-native"
+import { View, Text, ActivityIndicator } from "react-native"
 
 import * as firebase from "firebase"
 const firebaseConfig = {
@@ -54,8 +53,8 @@ const App = () => {
 
   if (!loaded) {
     return (
-      <View style={{ flex: 1, justifyContent: "center" }}>
-        <Text>Loading...</Text>
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <ActivityIndicator size="large" />
       </View>
     )
   }
