@@ -4,6 +4,7 @@ import {
   fetchUser,
   fetchUserFollowing,
   fetchUserPosts,
+  clearData,
 } from "../redux/actions/index"
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs"
 import { View } from "react-native"
@@ -25,6 +26,7 @@ const Main = () => {
   const currentUser = useSelector(({ userState }) => userState.currentUser)
 
   useEffect(() => {
+    dispatch(clearData())
     dispatch(fetchUser())
     dispatch(fetchUserPosts())
     dispatch(fetchUserFollowing())

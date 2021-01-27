@@ -76,6 +76,10 @@ const Profile = (props) => {
       .then(setFollowing(false))
   }
 
+  const onLogout = () => {
+    firebase.auth().signOut()
+  }
+
   if (user === null) {
     return <View></View>
   }
@@ -85,7 +89,7 @@ const Profile = (props) => {
       <View style={styles.containerInfo}>
         <Text>{user.name}</Text>
         <Text>{user.email}</Text>
-        {props.route.params.uid !== firebase.auth().currentUser.uid && (
+        {props.route.params.uid !== firebase.auth().currentUser.uid ? (
           <View>
             {following ? (
               <Button title="Following" onPress={() => onUnfollow()} />
@@ -93,6 +97,8 @@ const Profile = (props) => {
               <Button title="Follow" onPress={() => onFollow()} />
             )}
           </View>
+        ) : (
+          <Button title="Logout" onPress={() => onLogout()} />
         )}
       </View>
 

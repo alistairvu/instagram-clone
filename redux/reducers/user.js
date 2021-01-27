@@ -2,6 +2,7 @@ import {
   USER_STATE_CHANGE,
   USER_POSTS_STATE_CHANGE,
   USER_FOLLOWING_STATE_CHANGE,
+  CLEAR_DATA,
 } from "../constants/index"
 const initialState = {
   currentUser: null,
@@ -28,6 +29,8 @@ export const user = (state = initialState, action) => {
         ...state,
         following: payload,
       }
+    case CLEAR_DATA:
+      return initialState
     default:
       return state
   }
